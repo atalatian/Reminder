@@ -8,7 +8,7 @@ class Category(models.Model):
 class Task(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
-    category = models.ManyToManyField(Category, default="uncategorized")
+    category = models.ManyToManyField(Category)
     priority = models.IntegerField()
     schedule = models.DateTimeField()
     def __str__(self):
