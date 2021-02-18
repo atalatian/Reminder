@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ task.title }} Detail</title>
+</head>
+    <body>
+        {{ task.title }}
+        {{ task.description }}
+        {% for category in task.category.all %}
+            {{ category }}
+        {% endfor %}
+        {{ task.priority }}
+        {{ task.schedule }}
+    </body>
+</html>

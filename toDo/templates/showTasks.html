@@ -1,0 +1,32 @@
+{% load dateTimeExtras %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tasks</title>
+</head>
+<body>
+    <div>
+        {% for task in tasks %}
+            <a href="{% url "showTaskDetail" task.title %}">{{ task.title }}</a>
+            <p>{{ task.schedule|subDateTime }}</p>
+        {% endfor %}
+    </div>
+    <div>
+        {% if sorted %}
+        <a href="{% url 'showTasks' %}">
+            undo sort
+        </a>
+        {% else %}
+        <a href="{% url 'showTasks' 'schedule' %}">
+            sort by schedule
+        </a>
+        {% endif %}
+    </div>
+    <div>
+        <a href="{% url 'downloadTasks' %}">
+            Download Tasks
+        </a>
+    </div>
+</body>
+</html>

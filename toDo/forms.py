@@ -19,3 +19,11 @@ class TaskForm(forms.ModelForm):
                                    label="schedule",
                                    widget=forms.DateTimeInput(
                                        attrs={'placeholder': 'Example: 2006-10-25 14:30'}))
+
+
+class CategoryForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = ["category",]
+
+    category = forms.CharField(max_length=255, label="Category")
