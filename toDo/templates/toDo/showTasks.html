@@ -1,4 +1,5 @@
 {% load dateTimeExtras %}
+{% load capitalizer %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,8 +9,10 @@
 <body>
     <div>
         {% for task in tasks %}
-            <a href="{% url "showTaskDetail" task.title %}">{{ task.title }}</a>
-            <p>{{ task.schedule|subDateTime }}</p>
+            <a href="{% url "showTaskDetail" task.title|capitalize %}">
+                {{ task.title|capitalize }}
+            </a>
+            <p>{% subDateTime task.schedule %}</p>
         {% endfor %}
     </div>
     <div>

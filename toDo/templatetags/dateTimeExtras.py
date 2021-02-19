@@ -3,11 +3,12 @@ import datetime
 
 register = template.Library()
 
+
+@register.simple_tag
 def subDateTime(taskDateTime):
-    currentDateTime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
-    delta = currentDateTime - taskDateTime
-    new_delta = delta - datetime.timedelta(seconds= delta.seconds, microseconds=delta.microseconds)
+    currentDateTime = datetime.datetime.now()
+    currentDateTime = currentDateTime.replace(tzinfo=None)
+    taskDateTime = taskDateTime.replace(tzinfo=None)
+    delta = taskDateTime - currentDateTime
+    new_delta = delta - datetime.timedelta(microseconds=delta.microseconds)
     return str(new_delta)
-
-
-register.filter('subDateTime', subDateTime)

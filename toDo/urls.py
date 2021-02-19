@@ -10,4 +10,8 @@ urlpatterns = [
     path('downloadTasks/', views.downloadTasksView.as_view(), name='downloadTasks'),
     path('showTaskDetail/<str:title>/',
          views.showTaskDetailView.as_view(), name='showTaskDetail'),
+    path('showCategories/', views.showCategoriesView.as_view(), name='showCategories'),
+    path('showCategoryDetail/<str:category>',
+         views.showCategoryDetailView.as_view(),
+         name='showCategoryDetail'),
 ]

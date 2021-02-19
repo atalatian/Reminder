@@ -1,0 +1,30 @@
+{% load capitalizer %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Categories</title>
+</head>
+<body>
+    <div>
+        <h1>Categories</h1>
+        {% for category in category_task %}
+            {% if category.tasks|length > 0 %}
+                <a href="{% url 'showCategoryDetail' category.key %}">
+                    {{ category.key|capitalize }}
+                </a>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div>
+        <h1>Categories with no task</h1>
+        {% for category in category_task %}
+            {% if category.tasks|length == 0 %}
+                <a href="{% url 'showCategoryDetail' category.key %}">
+                    {{ category.key|capitalize }}
+                </a>
+            {% endif %}
+        {% endfor %}
+    </div>
+</body>
+</html>

@@ -5,6 +5,7 @@ from django.views import View
 from .forms import TaskForm
 from .forms import CategoryForm
 from .models import Task
+from .models import Category
 from django.core import serializers
 # Create your views here.
 
@@ -46,12 +47,12 @@ class showTasksView(View):
     def get(self, request, *args, **kwargs):
         if self.kwargs:
             tasks = Task.objects.all().order_by(self.kwargs["sortBy"])
-            return render(request, "showTasks.html",
+            return render(request, "toDo/showTasks.html",
                           {'tasks': tasks,
                            'sorted': True,})
         else:
             tasks = Task.objects.all()
-            return render(request, "showTasks.html", {'tasks': tasks})
+            return render(request, "toDo/showTasks.html", {'tasks': tasks})
 
 
 class showTaskDetailView(View):
@@ -71,3 +72,20 @@ class downloadTasksView(View):
         except Exception:
             raise
         return response
+
+class showCategoriesView(View):
+    def get(self, request, *args, **kwargs):
+        category_task = []
+        categories = Category.objects.all()
+        for i in range(0, len(categories)):
+            category_task.append({
+                "key": categories[i].category,
+                "tasks": categories[i].task_set.all()
+            })
+        return render(request, "toDo/showCategory.html", {'category_task': category_task})
+
+class showCategoryDetailView(View):
+    def get(self, request, *args, **kwargs):
+        categories = Category.objects.filter(category=self.kwargs["category"]).first()
+        return render(request, "toDo/showCategoryDetail.html",
+                      {'tasks': categories.task_set.all(), 'category': self.kwargs["category"]})
