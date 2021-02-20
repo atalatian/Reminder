@@ -1,16 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ task.title }} Detail</title>
-</head>
-    <body>
-        {{ task.title }}
-        {{ task.description }}
-        {% for category in task.category.all %}
-            {{ category }}
-        {% endfor %}
-        {{ task.priority }}
-        {{ task.schedule }}
-    </body>
-</html>
+{% extends 'toDo/base.html' %}
+{% block title %}
+    {{ task.title }} Detail
+{% endblock %}
+{% block body %}
+    <h1>Title</h1>
+    {{ task.title }}
+    <h1>Description</h1>
+    {{ task.description }}
+    <h1>Categories</h1>
+    <ul>
+    {% for category in task.category.all %}
+        <li>
+            <a href="{% url 'showCategoryDetail' category %}">{{ category }}</a>
+        </li>
+    {% endfor %}
+    </ul>
+    <h1>Priority</h1>
+    {{ task.priority }}
+    <h1>Schedule</h1>
+    {{ task.schedule }}
+{% endblock %}

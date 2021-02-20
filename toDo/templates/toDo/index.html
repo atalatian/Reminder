@@ -1,9 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Index</title>
-</head>
-<body>
-</body>
-</html>
+{% extends 'toDo/base.html' %}
+{% block title %}
+    Index
+{% endblock %}
+{% block body %}
+        <div class="sidebar_custom">
+        <h1>Due Tasks</h1>
+        {% block sidebar %}
+        {% endblock %}
+        <h1>Latest Tasks</h1>
+        {% block latest %}
+        {% endblock %}
+    </div>
+    <div class="content_custom">
+        {% block content %}
+        {% endblock %}
+    </div>
+{% endblock %}

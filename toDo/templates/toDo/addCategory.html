@@ -1,14 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Add Category</title>
-</head>
-<body>
-    <form action="/addCategory/" method="post">
+{% extends 'toDo/base.html' %}
+{% block title %}
+    Add Category
+{% endblock %}
+{% block body %}
+    <form action="{% url 'addCategory' %}" method="post">
         {% csrf_token %}
         {{ form }}
         <input type="submit" value="Submit">
     </form>
-</body>
-</html>
+{% endblock %}

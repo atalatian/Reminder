@@ -1,28 +1,70 @@
-form{
+body{
+    margin: 0;
+    padding: 0;
+}
+.addTask form{
     display: flex;
     flex-direction: column;
 }
 
-label{
+.addTask label{
     margin-bottom: 10px;
 }
 
-input{
+.addTask input{
     margin-bottom: 10px;
 }
 
-textarea{
+.addTask textarea{
     margin-bottom: 10px;
 }
 
-select{
+.addTask select{
     margin-bottom: 10px;
 }
 
-input[type="submit"]{
+.addTask a{
+    margin-bottom: 10px;
+}
+
+.nav_custom .nav_ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    background-color: gray;
+}
+
+.nav_custom .nav_ul li{
+    display: inline;
+    margin: 0 50px;
+}
+
+.nav_custom .nav_ul li a{
+    color: white;
+}
+
+.sidebar_custom{
+    float: left;
+    word-wrap: break-word;
+    width: 20%;
+    height: calc(100vh - 40px);
     background-color: gray;
     color: white;
-    border: 0;
-    border-radius: 3px;
-    height: 50px;
+    overflow-x: auto;
+}
+
+.dueTasks a{
+    color: white;
+}
+
+.content_custom{
+    width: 80%;
+    float: right;
+}
+
+.latestTasks a{
+    color: white;
 }

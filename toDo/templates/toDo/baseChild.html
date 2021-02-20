@@ -1,0 +1,37 @@
+{% extends "toDo/index.html" %}
+{% load capitalizer %}
+
+{% block sidebar %}
+    <div class="dueTasks">
+        <ul>
+            {% for pack in dueTasks %}
+                {% if pack.due %}
+                    <li>
+                        <a href="{% url 'showTaskDetail' pack.task.title %}">{{ pack.task.title|capitalize }}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
+{% block latest %}
+    <div class="latestTasks">
+        <ul>
+            {% for task in latestTasks %}
+                <li>
+                    <a href="{% url 'showTaskDetail' task.title %}">{{ task.title|capitalize }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
+{% block content %}
+    <div>
+        <ul>
+            <li><a href="/admin/">Admin</a></li>
+            <li><a href="{% url 'showCategories' %}">Categories</a></li>
+            <li><a href="{% url 'showTasks' %}">Tasks</a></li>
+        </ul>
+        <a href="{% url 'addTask' %}">Add new task</a>
+    </div>
+{% endblock %}

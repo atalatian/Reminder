@@ -1,17 +1,16 @@
+{% extends 'toDo/base.html' %}
 {% load capitalizer %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ category }} Detail</title>
-</head>
-<body>
-    <div>
-        {% for task in tasks %}
-            <a href="{% url 'showTaskDetail' task.title %}">
-                {{ task.title|capitalize }}
-            </a>
-        {% endfor %}
-    </div>
-</body>
-</html>
+{% block title %}
+    {{ category }} Detail
+{% endblock %}
+{% block body %}
+    <ul>
+    {% for task in tasks %}
+        <li>
+        <a href="{% url 'showTaskDetail' task.title %}">
+            {{ task.title|capitalize }}
+        </a>
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}

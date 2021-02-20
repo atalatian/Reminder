@@ -1,18 +1,15 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="{% static 'toDo/styles.css' %}">
-    <title>Add Task</title>
-</head>
-<body>
-    <div>
-        <form action="/addTask/" method="post">
-            {% csrf_token %}
-            {{ form }}
-            <input type="submit" value="Submit">
-        </form>
+{% extends "toDo/base.html" %}
+
+{% block title %}
+    Add Task
+{% endblock %}
+{% block body %}
+        <div class="addTask">
+            <form action="{% url 'addTask' %}" method="post">
+                {% csrf_token %}
+                {{ form }}
+                <a href="{% url 'addCategory' %}">Add new category</a>
+                <input type="submit" value="Submit">
+            </form>
     </div>
-</body>
-</html>
+{% endblock %}

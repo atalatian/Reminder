@@ -1,30 +1,33 @@
+{% extends 'toDo/base.html' %}
 {% load capitalizer %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Categories</title>
-</head>
-<body>
-    <div>
+{% block title %}
+    Categories
+{% endblock %}
+{% block body %}
+     <div>
         <h1>Categories</h1>
+        <ul>
         {% for category in category_task %}
             {% if category.tasks|length > 0 %}
-                <a href="{% url 'showCategoryDetail' category.key %}">
-                    {{ category.key|capitalize }}
-                </a>
+                <li>
+                    <a href="{% url 'showCategoryDetail' category.key %}">
+                        {{ category.key|capitalize }}
+                    </a>
+                </li>
             {% endif %}
         {% endfor %}
+        </ul>
     </div>
     <div>
         <h1>Categories with no task</h1>
-        {% for category in category_task %}
-            {% if category.tasks|length == 0 %}
-                <a href="{% url 'showCategoryDetail' category.key %}">
-                    {{ category.key|capitalize }}
-                </a>
-            {% endif %}
+        <ul>
+        {% for category in categoriesNoTask %}
+                <li>
+                    <a href="{% url 'showCategoryDetail' category.category %}">
+                        {{ category.category|capitalize }}
+                    </a>
+                </li>
         {% endfor %}
+        </ul>
     </div>
-</body>
-</html>
+{% endblock %}

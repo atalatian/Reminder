@@ -1,19 +1,21 @@
+{% extends 'toDo/base.html' %}
 {% load dateTimeExtras %}
 {% load capitalizer %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Tasks</title>
-</head>
-<body>
+{% block title %}
+    Task
+{% endblock %}
+{% block body %}
     <div>
-        {% for task in tasks %}
-            <a href="{% url "showTaskDetail" task.title|capitalize %}">
-                {{ task.title|capitalize }}
-            </a>
-            <p>{% subDateTime task.schedule %}</p>
-        {% endfor %}
+        <ul>
+            {% for task in tasks %}
+                <li>
+                    <a href={{ "/showTaskDetail/"|add:task.title }}>
+                        {{ task.title|capitalize }}
+                    </a>
+                </li>
+                <p>{% subDateTime task.schedule %}</p>
+            {% endfor %}
+        </ul>
     </div>
     <div>
         {% if sorted %}
@@ -31,5 +33,4 @@
             Download Tasks
         </a>
     </div>
-</body>
-</html>
+{% endblock %}

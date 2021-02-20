@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'toDo/styles.css' %}">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <div class="nav_custom">
+        <ul class="nav_ul">
+            <li>
+                <a href="{% url 'index' %}">Home</a>
+            </li>
+            <li>
+                <a href="{% url 'showTasks' %}">Tasks</a>
+            </li>
+            <li>
+                <a href="{% url 'showCategories' %}">Categories</a>
+            </li>
+
+        </ul>
+    </div>
+    {% block body %}
+    {% endblock %}
+</body>
+</html>
