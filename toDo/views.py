@@ -18,7 +18,7 @@ class index(View):
         ordered = Task.objects.all().order_by("pk").reverse()
         for i in range(0, len(Task.objects.all())):
             latestTasks.append(ordered[i])
-            if i >= 4:
+            if i > 5:
                 break
         return render(request, "toDo/baseChild.html", {'dueTasks': dueTasks,
                                                        'latestTasks': latestTasks})
@@ -68,11 +68,14 @@ class showTasksView(View):
         else:
             Task.objects.getDueTasks()
             tasks = Task.objects.all()
-            return render(request, "toDo/showTasks.html", {'tasks': tasks})
+            return render(request, "toDo/showTasks.html", {'tasks': tasks,})
 
 
 class showTaskDetailView(View):
     def get(self, request, *args, **kwargs):
+        for i in self.kwargs["title"]:
+            if i == "_":
+                self.kwargs["title"] = self.kwargs["title"].replace("_", " ")
         task = Task.objects.filter(title=self.kwargs["title"]).first()
         return render(request, "toDo/showTaskDetail.html", {'task': task})
 
@@ -94,8 +97,6 @@ class showCategoriesView(View):
         category_task = []
         categories = Category.objects.all()
         categoriesNoTask = Category.objects.getCategories()
-        print(categories)
-        print(categoriesNoTask)
         for i in range(0, len(categories)):
             category_task.append({
                 "key": categories[i].category,

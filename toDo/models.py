@@ -43,6 +43,7 @@ class Task(models.Model):
     priority = models.IntegerField()
     schedule = models.DateTimeField()
     objects = TaskManager()
+
     def __str__(self):
         return self.title
 

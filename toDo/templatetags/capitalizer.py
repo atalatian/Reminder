@@ -7,5 +7,5 @@ def capitalize(title):
     ans = ""
     words = title.split(" ")
     for word in words:
-        ans = word.capitalize() + " " + ans
+        ans = ans + " " + word.capitalize()
     return ans.strip()

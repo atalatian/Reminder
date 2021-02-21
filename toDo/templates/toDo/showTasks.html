@@ -1,6 +1,7 @@
 {% extends 'toDo/base.html' %}
 {% load dateTimeExtras %}
 {% load capitalizer %}
+{% load process %}
 {% block title %}
     Task
 {% endblock %}
@@ -9,7 +10,7 @@
         <ul>
             {% for task in tasks %}
                 <li>
-                    <a href={{ "/showTaskDetail/"|add:task.title }}>
+                    <a href={{ task.title|process:"/showTaskDetail/" }}>
                         {{ task.title|capitalize }}
                     </a>
                 </li>
